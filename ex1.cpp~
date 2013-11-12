@@ -120,48 +120,57 @@ void startLeft(int value);
 void startDown(int value);
 
 void startRight(int value){
-	bool moved = p.right();	
-	if(moved){
-		glutTimerFunc(16,startRight,1); 		
-	}else{
-		glutTimerFunc(16,startLeft,1);
+	if(p.randing){
+		bool moved = p.right();	
+		if(moved){
+			glutTimerFunc(16,startRight,1); 		
+		}else{
+			glutTimerFunc(16,startLeft,1);
+		}
+		p.draw();
 	}
-	p.draw();
 }
 
 void startLeft(int value){
-	bool moved = p.left();
-	if(moved){
-		glutTimerFunc(16,startLeft,1); 		
-	}else{
-		glutTimerFunc(16,startRight,1);
+	if(p.randing){
+		bool moved = p.left();
+		if(moved){
+			glutTimerFunc(16,startLeft,1); 		
+		}else{
+			glutTimerFunc(16,startRight,1);
+		}
+		p.draw();
 	}
-	p.draw();
 }
+
 void startUp(int value){
-	bool moved = p.up();
-	if(moved){
-		glutTimerFunc(16,startUp,1); 		
-	}else{
-		glutTimerFunc(16,startDown,1);
+	if(p.randing){
+		bool moved = p.up();
+		if(moved){
+			glutTimerFunc(16,startUp,1); 		
+		}else{
+			glutTimerFunc(16,startDown,1);
+		}
+		p.draw();
 	}
-	p.draw();
 }
 
 void startDown(int value){
-	bool moved = p.down();
-	if(moved){
-		glutTimerFunc(16,startDown,1); 		
-	}else{
-		glutTimerFunc(16,startUp,1);
+	if(p.randing){
+		bool moved = p.down();
+		if(moved){
+			glutTimerFunc(16,startDown,1); 		
+		}else{
+			glutTimerFunc(16,startUp,1);
+		}
+		p.draw();
 	}
-	p.draw();
 }
 
 void handleKeypress (unsigned char key, int x, int y){
 	if (key == 'p'){
 		if(!p.randing){
-			printf("ENTREIIIIIIIIIIIIIIII\n");
+			p.randing = !p.randing;
 			switch(rand()%4){
 				case(0):
 					startLeft(1);
@@ -176,10 +185,7 @@ void handleKeypress (unsigned char key, int x, int y){
 					startUp(1);
 					break;
 			}
-		}else{
-
 		}
-		p.randing = !p.randing;
 	}
 }
 
