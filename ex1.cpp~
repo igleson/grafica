@@ -164,13 +164,13 @@ void handleKeypress (unsigned char key, int x, int y){
 			printf("ENTREIIIIIIIIIIIIIIII\n");
 			switch(rand()%4){
 				case(0):
-					startLeft(1);
+					startUp(1);
 					break;
 				case(1):
-					startRight(1);
+					startUp(1);
 					break;
 				case(2):
-					startDown(1);
+					startUp(1);
 					break;
 				case(3):
 					startUp(1);
