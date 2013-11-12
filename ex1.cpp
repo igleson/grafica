@@ -36,7 +36,51 @@ struct penta {
 			glVertex3f (EX, EY, 0.0);
 		glEnd();
 		glFlush();
-	}	
+	}
+	
+	void right(){
+		float diff = 10;
+		if(DX+10 > 800){
+			diff = 800-DX;	
+		}
+		AX+=diff;
+		BX+=diff;
+		CX+=diff;
+		DX+=diff;
+		EX+=diff;
+	}
+	
+	void left(){
+		float diff = 10;
+		if(BX-10 < 0){
+			diff = BX;
+		}
+		AX-=diff;
+		BX-=diff;
+		CX-=diff;
+		DX-=diff;
+		EX-=diff;
+	}
+	
+	void up(){
+		float diff = 10;
+		if(CY+10 > 600) diff = 600-CY;
+		AY+=diff;
+		BY+=diff;
+		CY+=diff;
+		DY+=diff;
+		EY+=diff;
+	}
+	
+	void down(){
+		float diff = 10;
+		if(AY - 10 < 0) diff = AY;
+		AY-=diff;
+		BY-=diff;
+		CY-=diff;
+		DY-=diff;
+		EY-=diff;
+	}
 }p;
 
 void init (void){
@@ -49,29 +93,7 @@ void init (void){
 }
 
 void display(void){
-	float AX = 100;
-	float AY = 100;
-	float BX = 69.098;
-	float BY = 195.106;
-	float CX = 150;
-	float CY = 253.884;
-	float DX = 230.902;
-	float DY = 195.106;
-	float EX = 200;
-	float EY = 100;
-	glClear (GL_COLOR_BUFFER_BIT);
-	glColor3f (0.0, 0.0, 0.0);
-	glBegin(GL_LINE_LOOP);
-		glVertex3f (AX, AY, 0.0);
-		glVertex3f (BX, BY, 0.0);
-		glVertex3f (CX, CY, 0.0);
-		glVertex3f (DX, DY, 0.0);
-		glVertex3f (EX, EY, 0.0);
-	glEnd();
-	/* don't wait!
-	* start processing buffered OpenGL routines
-	*/
-	glFlush ();
+	p.draw();
 }
 
 void handleKeypress (unsigned char key, int x, int y){
@@ -83,16 +105,20 @@ void handleKeypress (unsigned char key, int x, int y){
 void processSpecialKeys(int key, int x, int y) {
 	switch(key) {
 		case GLUT_KEY_LEFT :
-			exit(0);
+			p.left();
+			p.draw();
 			break;
 		case GLUT_KEY_RIGHT :
-			exit(0);
+			p.right();
+			p.draw();
 			break;
 		case GLUT_KEY_UP :
-			exit(0);
+			p.up();
+			p.draw();
 			break;
 		case GLUT_KEY_DOWN :
-			exit(0);
+			p.down();
+			p.draw();
 			break;
 	}
 }
