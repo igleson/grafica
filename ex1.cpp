@@ -174,14 +174,18 @@ void handleKeypress (unsigned char key, int x, int y){
 			switch(rand()%4){
 				case(0):
 					startLeft(1);
+					startDown(1);
 					break;
 				case(1):
-					startRight(1);
+					startLeft(1);
+					startUp(1);
 					break;
 				case(2):
+					startRight(1);
 					startDown(1);
 					break;
 				case(3):
+					startRight(1);
 					startUp(1);
 					break;
 			}
